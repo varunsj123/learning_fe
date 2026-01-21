@@ -47,7 +47,7 @@ export default function Dashboard() {
   /* ===================== FETCH CLASSES ===================== */
   useEffect(() => {
     axios
-      .get(`${API_BASE}/filters/classes`)
+      .get(`${API_BASE}/api/filters/classes`)
       .then((res) => setAvailableClasses(res.data.data || []))
       .catch((err) => console.error("Failed to fetch classes:", err));
   }, []);
@@ -61,7 +61,7 @@ export default function Dashboard() {
     }
 
     axios
-      .get(`${API_BASE}/filters/batches`, {
+      .get(`${API_BASE}/api/filters/batches`, {
         params: { class_number: selectedClass },
       })
       .then((res) => setAvailableBatches(res.data.data || []))
@@ -89,15 +89,15 @@ export default function Dashboard() {
         topSubjRes,
         leaderboardRes,
       ] = await Promise.all([
-        axios.get(`${API_BASE}/charts/performance-distribution`, { params }),
-        axios.get(`${API_BASE}/charts/subject-pass-fail`, { params }),
-        axios.get(`${API_BASE}/charts/subject-average`, { params }),
-        axios.get(`${API_BASE}/charts/term-comparison`, { params }),
-        axios.get(`${API_BASE}/charts/report-subject-avg`, { params }),
-        axios.get(`${API_BASE}/charts/report-term-avg`, { params }),
-        axios.get(`${API_BASE}/table/top-students-overall`, { params }),
-        axios.get(`${API_BASE}/table/top-students-subject`, { params }),
-        axios.get(`${API_BASE}/table/leaderboard`, { params }),
+        axios.get(`${API_BASE}/api/charts/performance-distribution`, { params }),
+        axios.get(`${API_BASE}/api/charts/subject-pass-fail`, { params }),
+        axios.get(`${API_BASE}/api/charts/subject-average`, { params }),
+        axios.get(`${API_BASE}/api/charts/term-comparison`, { params }),
+        axios.get(`${API_BASE}/api/charts/report-subject-avg`, { params }),
+        axios.get(`${API_BASE}/api/charts/report-term-avg`, { params }),
+        axios.get(`${API_BASE}/api/table/top-students-overall`, { params }),
+        axios.get(`${API_BASE}/api/table/top-students-subject`, { params }),
+        axios.get(`${API_BASE}/api/table/leaderboard`, { params }),
       ]);
 
       setPerformance(perfRes.data.data || []);

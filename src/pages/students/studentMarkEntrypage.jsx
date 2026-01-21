@@ -55,7 +55,7 @@ export default function StudentListPage() {
 
   /* ================= LOAD FILTERS ================= */
   useEffect(() => {
-    API.get("/students/filters").then(res => {
+    API.get("/api/students/filters").then(res => {
       setClasses(res.data.classes || []);
       setSelectedClass(res.data.classes?.[0] || "");
     });
@@ -63,7 +63,7 @@ export default function StudentListPage() {
 
   useEffect(() => {
     if (!selectedClass) return;
-    API.get("/students/divisions", { params: { class: selectedClass } })
+    API.get("/api/students/divisions", { params: { class: selectedClass } })
       .then(res => {
         setDivisions(res.data || []);
         setSelectedDivision(res.data?.[0] || "");
@@ -72,7 +72,7 @@ export default function StudentListPage() {
 
   useEffect(() => {
     if (!selectedClass || !selectedDivision) return;
-    API.get("/students/students", {
+    API.get("/api/students/students", {
       params: { class: selectedClass, division: selectedDivision },
     }).then(res => {
       setStudents(res.data || []);
@@ -84,7 +84,7 @@ export default function StudentListPage() {
   useEffect(() => {
     if (!entryId || students.length === 0) return;
 
-    API.get(`/students/exams/marks/${entryId}`, {
+    API.get(`/api/students/exams/marks/${entryId}`, {
       params: { term },
     }).then(res => {
       const m = {};
@@ -107,7 +107,7 @@ export default function StudentListPage() {
     setMode(location.state.mode);
     setEntryId(location.state.entryId);
 
-    API.get(`/students/exams/entries/${location.state.entryId}`)
+    API.get(`/api/students/exams/entries/${location.state.entryId}`)
       .then(res => {
         setSelectedClass(res.data.class);
         setSelectedDivision(res.data.division);
@@ -161,7 +161,7 @@ export default function StudentListPage() {
     };
 
     try {
-      await API.post("/students/exams/marks", payload);
+      await API.post("/api/students/exams/marks", payload);
 
       setMarks({});
       setAbsentMap({});
@@ -217,7 +217,7 @@ export default function StudentListPage() {
       })),
     };
 
-    await API.put("/students/exams/marks", payload);
+    await API.put("/api/students/exams/marks", payload);
     setMarks({});
     setAbsentMap({});
     setErrors({});

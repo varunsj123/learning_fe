@@ -28,7 +28,7 @@ const [hideUpdateSuccess, setHideUpdateSuccess] = useState(false);
   useEffect(() => {
     if (classNum && batch) {
       axios
-        .get(`${API}/students`, {
+        .get(`${API}/api/students/students`, {
           params: { class_number: classNum, batch },
         })
         .then((res) => {
@@ -43,7 +43,7 @@ const [hideUpdateSuccess, setHideUpdateSuccess] = useState(false);
     }
   }, [classNum, batch]);
   useEffect(() => {
-    axios.get(`${API}/filters/classes`).then(res => {
+    axios.get(`${API}/api/filters/classes`).then(res => {
       setClasses(res.data.data || []);
     });
   }, []);
@@ -55,7 +55,7 @@ const [hideUpdateSuccess, setHideUpdateSuccess] = useState(false);
     }
 
     axios
-      .get(`${API}/filters/batches`, {
+      .get(`${API}/api/filters/batches`, {
         params: { class_number: classNum },
       })
       .then(res => {
@@ -67,7 +67,7 @@ const [hideUpdateSuccess, setHideUpdateSuccess] = useState(false);
   if (!classNum || !batch || !date) return;
 
   axios
-    .get(`${API}/attendance/by-date`, {
+    .get(`${API}/api/attendance/by-date`, {
       params: { class_number: classNum, batch, date },
     })
     .then(async (res) => {
@@ -84,7 +84,7 @@ const [hideUpdateSuccess, setHideUpdateSuccess] = useState(false);
         setIsExisting(true);
       } else {
         // ✅ NO ATTENDANCE → load students list
-        const studentRes = await axios.get(`${API}/students`, {
+        const studentRes = await axios.get(`${API}/api/students/students`, {
           params: { class_number: classNum, batch },
         });
 
@@ -105,7 +105,7 @@ const [hideUpdateSuccess, setHideUpdateSuccess] = useState(false);
  const updateAttendance = async () => {
   try {
     setSaving(true);
-    await axios.put(`${API}/attendance/update/${sessionId}`, {
+    await axios.put(`${API}/api/attendance/update/${sessionId}`, {
       records: students,
     });
 
@@ -153,7 +153,7 @@ const [hideUpdateSuccess, setHideUpdateSuccess] = useState(false);
   try {
     setSaving(true);
 
-    const res = await axios.post(`${API}/attendance/save`, {
+    const res = await axios.post(`${API}/api/attendance/save`, {
       class_number: classNum,
       batch,
       date,
@@ -294,7 +294,7 @@ const [hideUpdateSuccess, setHideUpdateSuccess] = useState(false);
           onClick={async () => {
             try {
               setSaving(true);
-              await axios.delete(`${API}/attendance/delete/${sessionId}`);
+              await axios.delete(`${API}/api/attendance/delete/${sessionId}`);
               setStudents([]);
               setDate("");
               setIsExisting(false);

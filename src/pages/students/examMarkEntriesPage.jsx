@@ -28,7 +28,7 @@ export default function ExamMarkEntriesPage() {
     const [availableTerms, setAvailableTerms] = useState(["Term 1", "Term 2", "Term 3"]);
 
     useEffect(() => {
-        API.get("/students/exams/entries").then(res => {
+        API.get("/api/students/exams/entries").then(res => {
             const sorted = [...(res.data || [])].sort((a, b) => a.id - b.id);
             setEntries(sorted);
             

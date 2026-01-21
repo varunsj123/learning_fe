@@ -38,7 +38,7 @@ export default function StudentReportCard() {
   useEffect(() => {
     async function fetchReport() {
       try {
-        const res = await axios.get(`${API_BASE}/students/report-card`, {
+        const res = await axios.get(`${API_BASE}/api/reports/report-card/data`, {
           params: { admission_no, term },
         });
 
@@ -124,7 +124,7 @@ export default function StudentReportCard() {
     try {
       setSavingRemark(true);
 
-      await axios.post(`${API_BASE}/students/term-remark`, {
+      await axios.post(`${API_BASE}/api/reports/term-remark`, {
         admission_no: admission_no,
         term: term,
         year: studentInfo.year,

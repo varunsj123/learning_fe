@@ -56,7 +56,7 @@ export default function StudentForm({ initialData = {}, onClose, onSubmit }) {
 
     try {
       // Call the API directly
-      const response = await API.post("/users/create", {
+      const response = await API.post("/api/users/create", {
         name: formData.name.trim(),
         email: formData.email?.trim() || null,
         password: formData.password || null, // Let backend generate if empty

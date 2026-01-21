@@ -60,7 +60,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await API.post("/users/login", {
+      const response = await API.post("/api/auth/login", {
         email,
         password
       });
