@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import API from "../api"; // Add this import
+import API from "../../api";
 
 const CLASSES = ["Class 1", "Class 2", "Class 3", ];
 const DIVISIONS = ["A", "B", "C"];

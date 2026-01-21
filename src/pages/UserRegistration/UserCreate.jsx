@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import StudentForm from "./StudentForm";
 import TeacherForm from "./TeacherForm";
 import "./userCreate.css";
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../../layouts/MainLayout";
 
 export default function UserCreate() {
   const [role, setRole] = useState("");
