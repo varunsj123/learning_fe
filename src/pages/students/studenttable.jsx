@@ -9,7 +9,7 @@ function StudentSummary() {
     const batch = selection.charAt(1);
  
     fetch(
-      `http://localhost:4000/students/summary?class=${classNumber}&batch=${batch}`
+      `${import.meta.env.VITE_API_BASE_URL || "http://localhost:4000"}/students/summary?class=${classNumber}&batch=${batch}`
     )
       .then((res) => res.json())
       .then((data) => {

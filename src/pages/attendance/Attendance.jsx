@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import MainLayout from "../../layouts/MainLayout";
-const API = "http://localhost:4000";
+const API = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
 
 export default function Attendance() {
   const navigate = useNavigate();

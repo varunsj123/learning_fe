@@ -13,7 +13,7 @@ import { FiRefreshCw, FiAlertCircle } from "react-icons/fi";
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 import MainLayout from "../../layouts/MainLayout";
 
-const API_BASE = "http://localhost:4000";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000";
 
 export default function Dashboard() {
   // Data states
