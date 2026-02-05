@@ -320,7 +320,7 @@ const [hideUpdateSuccess, setHideUpdateSuccess] = useState(false);
 
       {/* 📋 MAIN CARD */}
       <div style={styles.card}>
-        <h2 style={styles.title}>📋 Attendance Management</h2>
+        <h2 style={styles.title}>📋 Attendance Managements</h2>
 
         {/* 🔽 FILTERS CARD */}
         <div style={styles.filterCard}>
